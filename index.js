@@ -1,7 +1,16 @@
+// Import fs for file system operations
+const fs = require('fs');
+
+// Import inquirer for user input prompts
 const inquirer = require('inquirer');
 
-inquirer
-    .prompt([
+// Import generateMarkdown to create markdown content
+const generateMarkdown = require("./generateMarkdown");
+
+// Function to initialize the application
+function init() {
+    // Prompt the user with a series of questions using 'inquirer'
+    inquirer.prompt([
         {
             type: 'input',
             name: 'title',
@@ -49,7 +58,18 @@ inquirer
             message: 'Please input your email address:',
         },
     ])
-    .then((response) => {
-        console.log('User entered:');
-        console.log(response);
+
+    // After the user provides answers, handle the responses
+    .then((answers) => {
+        // Generate markdown content based on user answers
+        const potentialFile = generateMarkdown(answers);
+        // Write the generated markdown content to a file named 'README.md and place it in the results folder'
+        fs.writeFile('./results/README.md' , potentialFile, (err) => {
+            // Log any errors that occur during file writing
+            console.log(err);
+        })
     });
+};
+
+// Call the 'init' function
+init();
