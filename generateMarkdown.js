@@ -1,7 +1,15 @@
 // function to generate markdown for README
 function generateMarkdown(data) {
+    
+    // Create a bulleted list for Installation and Contributors
+    const bulletList = (data.contributors, data.installation)
+        .split(',')
+        .map(contributor => `- ${contributor.trim()}`)
+        .join('\n');
+      
     return `# ${data.title}
 
+// Create a badge and ensure correct rendering when there are spaces
 ![License: ${data.license}](https://img.shields.io/badge/License-${encodeURIComponent(data.license)}-blue)
 
 ## Description
@@ -18,7 +26,7 @@ ${data.description}
 - [Questions](#questions)
 
 ## Installation
-${data.installation}
+${bulletList}
 
 ## Usage
 ${data.usage}
@@ -27,7 +35,7 @@ ${data.usage}
 This project is licensed under the ${data.license} License.
 
 ## Contributing 
-${data.contributors}
+${bulletList}
 
 ## Tests
 ${data.test}
