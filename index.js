@@ -5,7 +5,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 
 // Import generateMarkdown to create markdown content
-const generateMarkdown = require("./generateMarkdown");
+const generateMarkdown = require("./markdown/generateMarkdown");
 
 // Function to initialize the application
 function init() {
@@ -64,7 +64,7 @@ function init() {
         // Generate markdown content based on user answers
         const potentialFile = generateMarkdown(answers);
         // Write the generated markdown content to a file named 'README.md and place it in the results folder'
-        fs.writeFile('./results/README.md' , potentialFile, (err) => {
+        fs.writeFile('./markdown/README.md' , potentialFile, (err) => {
             // Log any errors that occur during file writing
             console.log(err);
         })

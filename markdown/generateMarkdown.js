@@ -9,7 +9,6 @@ function generateMarkdown(data) {
       
     return `# ${data.title}
 
-// Create a badge and ensure correct rendering when there are spaces
 ![License: ${data.license}](https://img.shields.io/badge/License-${encodeURIComponent(data.license)}-blue)
 
 ## Description
