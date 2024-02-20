@@ -2,10 +2,15 @@
 function generateMarkdown(data) {
     
     // Create a bulleted list for Installation and Contributors
-    const bulletList = (data.contributors, data.installation)
-        .split(',')
-        .map(contributor => `- ${contributor.trim()}`)
-        .join('\n');
+    const contributorsList = data.contributors
+    .split(',')
+    .map(contributor => `- ${contributor.trim()}`)
+    .join('\n');
+
+    const installationList = data.installation
+    .split(',')
+    .map(step => `- ${step.trim()}`)
+    .join('\n');
       
     return `# ${data.title}
 
@@ -25,7 +30,7 @@ ${data.description}
 - [Questions](#questions)
 
 ## Installation
-${bulletList}
+${installationList}
 
 ## Usage
 ${data.usage}
@@ -34,7 +39,7 @@ ${data.usage}
 This project is licensed under the ${data.license} License.
 
 ## Contributing 
-${bulletList}
+${contributorsList}
 
 ## Tests
 ${data.test}
